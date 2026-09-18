@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Function to fetch the existing post data
 async function loadPost() {
     try {
-        const response = await fetch(`https://quillory.onrender.com/api/posts/${postId}`);
+        const response = await fetch(`http://localhost:3000/api/posts/${postId}`);
         const result = await response.json();
 
         if (result.success) {
@@ -80,7 +80,7 @@ async function updatePost() {
     }
 
     try {
-        const response = await fetch(`https://quillory.onrender.com/api/posts/${postId}`, {
+        const response = await fetch(`http://localhost:3000/api/posts/${postId}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

@@ -33,7 +33,7 @@ document.getElementById('publishBtn').addEventListener('click', async () => {
     const tags = tagsString.split(',').map(t => t.trim()).filter(Boolean);
 
     try {
-        const response = await fetch('https://quillory.onrender.com/api/posts', {
+        const response = await fetch('http://localhost:3000/api/posts', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

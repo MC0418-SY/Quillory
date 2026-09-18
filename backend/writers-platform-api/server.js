@@ -15,9 +15,21 @@ const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// ADD THIS BLOCK TO DISABLE CSP ERRORS
+app.use((req, res, next) => {
+    res.setHeader('Content-Security-Policy', "default-src 'self' 'unsafe-inline' 'unsafe-eval' * data: blob:;");
+    res.removeHeader('X-Content-Security-Policy');
+    next();
+});
+
+
+// Tell Express to serve all frontend files from the root folder (go up TWO directories)
+app.use(express.static(path.join(__dirname, '..', '..')));
 
 // Ensure uploads directory exists
 const uploadDir = path.join(__dirname, 'uploads');
@@ -26,9 +38,11 @@ if (!fs.existsSync(uploadDir)) {
 }
 
 // Multer Storage Configuration (Save to disk)
+// Multer Storage Configuration (Save to disk)
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'uploads/'); // Folder where files are saved
+        // USE ABSOLUTE PATH
+        cb(null, path.join(__dirname, 'uploads')); 
     },
     filename: function (req, file, cb) {
         cb(null, 'user_' + req.params.id + '_' + Date.now() + path.extname(file.originalname));
@@ -39,7 +53,8 @@ const upload = multer({
     limits: { fileSize: 2 * 1024 * 1024 } // 2MB limit
 });
 
-// Make the uploads folder public so the browser can view the images
+
+// Make the uploads folder public (USE ABSOLUTE PATH)
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // --- AUTH ROUTES ---
