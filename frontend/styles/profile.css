@@ -1,0 +1,366 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #fafafa;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+}
+
+/* Header */
+header {
+  background-color: #000000;
+  color: white;
+  padding: 10px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-family: 'Lobster', cursive;
+  font-size: 2em;
+  font-weight: 700;
+  margin: 0;
+  width: 200px;
+}
+
+.title a { color: white; text-decoration: none; }
+
+nav {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 25px;
+  font-size: 1.1em;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+nav a:hover { background: rgba(255, 255, 255, 0.3); }
+nav a.active { background: #fff; color: #000; font-weight: 700; }
+
+.profile-link {
+  width: 200px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Profile Layout */
+.main-layout {
+  display: flex;
+  justify-content: center;  
+  align-items: flex-start;
+  gap: 40px;
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.posts-section {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.section-title {
+  margin: 0 0 20px 0;
+  font-size: 1.5em;
+}
+
+.post-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Profile Settings Card */
+.account-settings-card {
+  flex: 1;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  padding: 24px;
+  min-width: 300px;
+  max-width: 350px;
+}
+
+.account-settings-card h4 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 1.2em;
+}
+
+.profile-picture {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #000;
+}
+
+.upload-btn {
+  margin-top: 15px;
+  padding: 8px 15px;
+  background: #000;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9em;
+  text-align: center;
+  border: none;
+  transition: background 0.2s;
+}
+
+.upload-btn:hover { background: #333; }
+.upload-btn input { position: absolute; visibility: hidden; }
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.bio-input {
+  width: 100%;
+  margin-top: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  resize: vertical;
+  min-height: 80px;
+  font-size: 0.95em;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+.social-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+  width: 100%;
+}
+
+.social-links label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9em;
+}
+
+.social-links input {
+  flex: 1;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.logout-container {
+  margin-top: 40px;
+}
+
+.logout-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #000;
+  color: white;
+  border: 1px solid #000;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.logout-btn:hover {
+  background-color: #333;
+}
+
+/* Post Card Styling (Matches Dashboard) */
+.post-card {
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  padding: 24px;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.post-title {
+  font-size: 1.5em;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  color: #000;
+}
+
+.post-meta {
+  font-size: 14px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  color: #888;
+}
+
+.post-content {
+  line-height: 1.6;
+  color: #333;
+  font-size: 1em;
+  border-top: 1px solid #eee;
+  padding-top: 10px;
+}
+
+.post-tags {
+  margin-top: 10px;
+  font-size: 0.9em;
+  color: #666;
+}
+
+.post-actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.edit-post {
+    background-color: #007bff; /* Blue for edit */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.edit-post:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+
+}
+
+.delete-published {
+    background-color: #dc3545; /* Red for delete */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.delete-published:hover {
+    background-color: #a71d2a; /* Darker red on hover */
+}
+
+/* Save Changes Button */
+.save-changes-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #000;
+  color: white;
+  border: 1px solid #000;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 500;
+  transition: background 0.2s;
+  margin-top: 20px;
+}
+
+.save-changes-btn:hover {
+  background-color: #333;
+}
+
+
+/* Post Card Inner Styling */
+.post-title {
+    font-size: 1.5em;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    color: #000;
+}
+
+.post-content {
+    line-height: 1.6;
+    color: #333;
+    font-size: 1em;
+}
+
+
+
+/* Fix Quill's HTML formatting inside the card */
+.post-content p {
+    margin: 0 0 0 0;
+}
+.post-content ul, .post-content ol {
+  margin-top: 0;
+    padding-left: 30px;
+    margin-bottom: 1em;
+}
+.post-content h2, .post-content h3 {
+    margin: 1.2em 0 0 0;
+}
+
+.post-tags {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+    font-size: 0.9em;
+    color: #666;
+}
+
+
+/* Responsive */
+@media (max-width: 900px) {
+  .main-layout {
+    flex-direction: column;
+    align-items: center;
+  }
+  .account-settings-card {
+    max-width: 100%;
+    width: 100%;
+  }
+}

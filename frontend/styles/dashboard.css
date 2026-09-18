@@ -1,0 +1,522 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+header {
+    background-color: #000000;
+    color: white;
+    padding: 10px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+    font-family: 'Lobster', cursive;
+    font-size: 2em;
+    font-weight: 700;
+    margin: 0;
+    width: 200px;
+}
+
+.title a {
+    color: white;
+    text-decoration: none;
+}
+
+.profile-link {
+    width: 200px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #fafafa;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+  }
+  
+
+
+
+  .dashboard-summary {
+    max-width: 600px; /* Same width for both */
+    width: 100%;
+    margin: 0 auto; /* Center horizontally */
+    margin-top: 30px;
+    margin-bottom: 0;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 16px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 24px;
+    text-align: center;
+  }
+  
+  .post-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 600px; /* Ensure the width is consistent */
+    width: 100%;
+    margin: 0 auto; /* Center the feed */
+    padding: 0 16px; /* Add padding to prevent overflow */
+    box-sizing: border-box; /* Include padding in width calculation */
+    background: none; /* Remove background */
+    border: none; /* Remove border */
+    box-shadow: none; /* Remove shadow */
+  }
+  
+  .post-card {
+    width: 100%; /* Take full width of the parent */
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 16px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 24px;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    box-sizing: border-box; /* Include padding and border in width */
+    text-align: left; /* Align text to the left */
+  }
+  
+  .post-feed .post-card:last-child {
+    margin-bottom: 60px;
+  }
+  
+  .post-meta {
+    font-size: 14px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: gray
+  }
+  
+
+  
+  .delete-published {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .content-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 0;
+}
+
+
+nav {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 25px;
+  font-size: 1.1em;
+}
+
+nav li {
+  margin: 0;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+nav a:hover {
+    background: rgba(255, 255, 255, 0.301);
+}
+
+nav a.active {
+    background: #fff;
+    color: #000;
+    font-weight: 700;
+}
+
+nav a.active:hover {
+    background: #f3f3f3ee;
+}
+
+
+
+
+
+.view-section {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.static-icon {
+  position: absolute; /* Position it relative to the container */
+  bottom: 20px; /* Distance from the bottom of the container */
+  left: 20px; /* Distance from the left of the container */
+  z-index: 1000; /* Ensure it appears above other elements */
+}
+
+.dashboard-summary {
+  position: relative; /* Make the container a positioning context */
+  max-width: 750px;
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  text-align: center;
+}
+
+/* New Post Button */
+.new-post-btn {
+  position: fixed;
+  bottom: 20px;
+  left: 28em;
+  background-color: #000000;
+  border: none;
+  border-radius: 50%;
+  padding: 16px;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+  z-index: 1000;
+}
+
+.new-post-btn svg {
+  fill: white;
+  width: 24px;
+  height: 24px;
+}
+
+.new-post-btn:hover {
+  transform: scale(1.1);
+  background-color: #131313;
+}
+
+/* Filter Bar Styles */
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+  margin: 20px auto;
+  margin-top: 0;
+  padding: 10px;
+  max-width: 800px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.filter-bar label {
+  font-size: 0.9em;
+  color: #333;
+}
+
+.filter-bar select,
+.filter-bar input[type="checkbox"] {
+  padding: 4px 8px;
+  font-size: 0.9em;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+
+#category-filter {
+  min-width: 150px;
+  font-family: 'Inter', sans-serif;
+}
+
+#recency-filter {
+  min-width: 110px;
+  font-family: 'Inter', sans-serif;
+}
+
+
+/* Edit Post Button */
+.edit-post {
+  background-color: transparent;
+  border: 1px solid #000000;
+  color: #000000;
+  border-radius: 4px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 1em;
+  margin-right: 8px;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.edit-post:hover {
+  background-color: rgba(0, 123, 255, 0.1);
+  transform: scale(1.05);
+}
+
+/* Post Actions */
+.post-actions {
+  display: flex;
+  gap: 8px; /* Adjust spacing between buttons as needed */
+  align-items: center; 
+  justify-content: flex-end; /* Align buttons to the right */
+}
+
+/* Responsive styles for mobile devices */
+@media (max-width: 600px) {
+  /* Adjust header padding */
+  header {
+    padding: 10px 20px;
+  }
+  /* Center and scale-down summary and posts feed */
+  .dashboard-summary,
+  .post-feed {
+    max-width: 100%;
+    margin: 20px 10px;
+    padding: 16px;
+  }
+  /* Reduce gap and font size between nav items */
+  nav ul {
+    gap: 12px;
+    font-size: 0.95em;
+  }
+  /* Adjust new post button position and padding */
+  .new-post-btn {
+    left: 20px;
+    padding: 12px;
+  }
+  /* Ensure the static svg icon stays at bottom left */
+  .static-icon {
+    left: 20px;
+  }
+}
+
+/* Responsive styles for tablets and iPads */
+@media (max-width: 900px) and (min-width: 601px) {
+  /* Adjust header padding */
+  header {
+    padding: 10px 30px;
+  }
+  /* Center summary and posts feed with a bit more margin */
+  .dashboard-summary,
+  .post-feed {
+    max-width: 90%;
+    margin: 20px auto;
+    padding: 18px;
+  }
+  /* Slightly adjust nav items for better spacing */
+  nav ul {
+    gap: 15px;
+    font-size: 1em;
+  }
+  /* Reposition new post button closer to the left */
+  .new-post-btn {
+    left: 20px;
+    padding: 14px;
+  }
+  /* If needed, adjust font sizes or other elements specifically for tablets */
+}
+
+/* Post Card Inner Styling */
+.post-title {
+    font-size: 1.5em;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    color: #000;
+}
+
+.post-content {
+    line-height: 1.6;
+    color: #333;
+    font-size: 1em;
+}
+
+
+
+/* Fix Quill's HTML formatting inside the card */
+.post-content p {
+    margin: 0 0 0 0;
+}
+.post-content ul, .post-content ol {
+  margin-top: 0;
+    padding-left: 30px;
+    margin-bottom: 1em;
+}
+.post-content h2, .post-content h3 {
+    margin: 1.2em 0 0 0;
+}
+
+.post-tags {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+    font-size: 0.9em;
+    color: #666;
+}
+
+/* Style the Delete button to match your design */
+.delete-published {
+    color: #dc3545; /* Red for delete */
+    font-weight: 500;
+    font-size: 1em;
+}
+
+.delete-published:hover {
+    text-decoration: underline;
+}
+
+/* Search Container */
+.search-container {
+  position: relative;
+  flex: 1;
+  min-width: 200px;
+}
+
+/* Search Input */
+#search-bar {
+  width: 100%;
+  padding: 8px 12px 8px 40px; /* 40px left padding makes room for the icon */
+  font-size: 0.9em;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
+  text-overflow: ellipsis; /* Ensures text doesn't overflow */
+}
+
+/* Search Icon */
+.search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+  font-size: 20px;
+  pointer-events: none; /* Allows clicking through the icon into the input */
+}
+
+/* Author Clickable Link */
+.author-link {
+  background: none;
+  border: none;
+  padding: 0;
+  color: gray;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  position: relative;
+  text-decoration: none;
+  display: inline-block; /* Helps with transform scaling */
+}
+
+.author-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: #000;
+  transform: scaleX(0); /* Start with no width */
+  transform-origin: bottom left; /* Grow from left to right */
+  transition: transform 0.2s ease-in-out; /* Smooth animation */
+}
+
+.author-link:hover::after {
+  transform: scaleX(1); /* Grow to full width on hover */
+}
+
+/* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+/* Modal Box */
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 10px; right: 15px;
+    font-size: 28px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #888;
+    line-height: 1;
+}
+
+.modal-avatar-img {
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #000;
+    margin-bottom: 15px;
+}
+
+.modal-bio {
+    color: #555;
+    font-size: 0.9em;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.modal-socials {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.modal-socials a {
+    color: #000;
+    text-decoration: none;
+    font-size: 0.9em;
+    border: 1px solid #ccc;
+    padding: 6px 12px;
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+
+.modal-socials a:hover {
+    background: #f0f0f0;
+}

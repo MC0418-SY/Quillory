@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="icon" type="image/png" href="../assets/quillory-icon.png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quillory - Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="../styles/profile.css" />
+    <link rel="stylesheet" href="../styles/global.css" />
+  </head>
+  <body>
+    <header>
+      <div class="title"><a href="dashboard.html">Quillory</a></div>
+      
+      <nav>
+            <ul>
+              <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+              <li><a href="post.html" class="nav-link">Create Post</a></li>
+            </ul>
+      </nav>
+
+      <a href="profile.html" class="profile-link" aria-label="Profile">
+        <img id="header-profile-img" src="https://via.placeholder.com/35" alt="Profile" class="header-profile-img" />
+      </a>
+    </header>
+
+    <div class="main-layout">
+      <!-- Your Posts Section -->
+      <div class="posts-section">
+        <h3 class="section-title">Your Posts</h3>
+        <div id="profilePostsFeed" class="post-feed">
+            <!-- JS will inject posts here -->
+        </div>
+      </div>
+
+      <!-- Account Card -->
+      <div class="card account-settings-card">
+        <h4>Your Account</h4>
+        <div class="profile-container">
+          <div class="profile-picture">
+            <!-- FIXED: Changed pf.jpg to a safe placeholder -->
+            <img src="https://via.placeholder.com/120" alt="Profile Picture" class="profile-img" />
+            <label class="upload-btn">
+              Upload Picture
+              <input type="file" class="account-settings-fileinput" />
+            </label>
+          </div>
+
+          <div class="profile-info">
+            <input type="text" id="username" placeholder="Name" class="form-control" />
+            <input type="email" id="email" placeholder="Email" class="form-control" readonly disabled aria-disabled="true"/>
+            <textarea id="bio" class="bio-input" placeholder="Write a short bio..."></textarea>
+
+            <div class="social-links">
+              <label><i class="fab fa-facebook-square"></i> <input type="url" id="facebook_url" placeholder="Facebook URL" /></label>
+              <label><i class="fab fa-twitter-square"></i> <input type="url" id="twitter_url" placeholder="Twitter URL" /></label>
+              <label><i class="fab fa-instagram-square"></i> <input type="url" id="instagram_url" placeholder="Instagram URL" /></label>
+              <label><i class="fab fa-linkedin"></i> <input type="url" id="linkedin_url" placeholder="LinkedIn URL" /></label>
+            </div>
+            
+            <button class="save-changes-btn">Save Changes</button>
+          </div>
+        </div>
+
+        <div class="logout-container">
+          <button class="logout-btn">Log Out</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MOVED: Scripts at the bottom of body -->
+    <script src="../javascript/global.js"></script>
+    <script src="../javascript/profile.js"></script>
+  </body>
+</html>
