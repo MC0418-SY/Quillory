@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             // 2. Send the login request to the Node.js backend
-            const response = await fetch('http://localhost:3000/api/auth/login', {
+            const response = await fetch('https://quillory.onrender.com/api/auth/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, password })

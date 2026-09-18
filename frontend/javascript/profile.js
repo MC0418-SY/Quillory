@@ -23,14 +23,14 @@ document.addEventListener('DOMContentLoaded', () => {
         // 1. Load User Data and Populate Form
     async function loadUserData() {
         try {
-            const res = await fetch(`http://localhost:3000/api/users/${userId}`);
+            const res = await fetch(`https://quillory.onrender.com/api/users/${userId}`);
             const result = await res.json();
             if (result.success) {
                 const u = result.data;
                 
                 // If we got a URL back from the DB, display it
                 if (u.avatar_url) {
-                    profileImg.src = `http://localhost:3000${u.avatar_url}?t=${new Date().getTime()}`;
+                    profileImg.src = `https://quillory.onrender.com${u.avatar_url}?t=${new Date().getTime()}`;
                 } else {
                     // Use inline SVG as fallback instead of via.placeholder.com
                     profileImg.src = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'><rect width='120' height='120' fill='%23e0e0e0'/><circle cx='60' cy='50' r='25' fill='%23a0a0a0'/><path d='M15 120 a45 45 0 0 1 90 0' fill='%23a0a0a0'/></svg>";
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             try {
-                const res = await fetch(`http://localhost:3000/api/users/${userId}`, {
+                const res = await fetch(`https://quillory.onrender.com/api/users/${userId}`, {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(updatedUser)
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 formData.append('avatar', file);
 
                 try {
-                    const res = await fetch(`http://localhost:3000/api/users/${userId}/avatar`, {
+                    const res = await fetch(`https://quillory.onrender.com/api/users/${userId}/avatar`, {
                         method: 'PUT',
                         body: formData
                     });
@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     if (result.success) {
                         // Immediately update the image on the screen
-                        profileImg.src = `http://localhost:3000${result.avatar_url}?t=${new Date().getTime()}`;
+                        profileImg.src = `https://quillory.onrender.com${result.avatar_url}?t=${new Date().getTime()}`;
                         showCustomAlert('Profile picture updated!');
                     } else {
                         showCustomAlert(result.message || 'Failed to upload picture.', 'error');
@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 4. Load User's Posts
     async function loadProfilePosts() {
         try {
-            const response = await fetch(`http://localhost:3000/api/posts?userId=${userId}`);
+            const response = await fetch(`https://quillory.onrender.com/api/posts?userId=${userId}`);
             const result = await response.json();
 
             if (result.success && result.data.length > 0) {
@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     btn.addEventListener('click', async (e) => {
                         const postId = e.target.getAttribute('data-id');
                         if (confirm('Are you sure you want to delete this post?')) {
-                            await fetch(`http://localhost:3000/api/posts/${postId}`, { method: 'DELETE' });
+                            await fetch(`https://quillory.onrender.com/api/posts/${postId}`, { method: 'DELETE' });
                             loadProfilePosts();
                         }
                     });

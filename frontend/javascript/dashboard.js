@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function fetchPosts() {
         try {
-            const response = await fetch('http://localhost:3000/api/posts');
+            const response = await fetch('https://quillory.onrender.com/api/posts');
             const result = await response.json();
 
             if (result.success) {
@@ -131,13 +131,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Function to fetch author data and show modal
     async function showAuthorModal(userId) {
         try {
-            const res = await fetch(`http://localhost:3000/api/users/${userId}`);
+            const res = await fetch(`https://quillory.onrender.com/api/users/${userId}`);
             const result = await res.json();
             
             if (result.success) {
                 const user = result.data;
                 // Set Avatar or default
-                modalAvatar.src = user.avatar_url ? `http://localhost:3000${user.avatar_url}?t=${new Date().getTime()}` : 'pf.jpg';
+                modalAvatar.src = user.avatar_url ? `https://quillory.onrender.com${user.avatar_url}?t=${new Date().getTime()}` : 'pf.jpg';
                 
                 // Set Username and Bio
                 modalUsername.innerText = user.username;
