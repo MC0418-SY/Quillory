@@ -19,25 +19,28 @@ const __dirname = path.dirname(__filename);
 app.use(cors());
 app.use(express.json());
 
-// Make the uploads folder public so the browser can view the images
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-
 // Ensure uploads directory exists
 const uploadDir = path.join(__dirname, 'uploads');
 if (!fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir);
 }
 
-// Multer Storage Configuration
+// Multer Storage Configuration (Save to disk)
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'uploads/');
+        cb(null, 'uploads/'); // Folder where files are saved
     },
     filename: function (req, file, cb) {
         cb(null, 'user_' + req.params.id + '_' + Date.now() + path.extname(file.originalname));
     }
 });
-const upload = multer({ storage: storage });
+const upload = multer({ 
+    storage: storage,
+    limits: { fileSize: 2 * 1024 * 1024 } // 2MB limit
+});
+
+// Make the uploads folder public so the browser can view the images
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // --- AUTH ROUTES ---
 
@@ -96,7 +99,7 @@ app.post('/api/auth/login', async (req, res) => {
 
 // --- USER ROUTES ---
 
-// FETCH User Data (for profile page)
+// FETCH User Data
 app.get('/api/users/:id', async (req, res) => {
     try {
         const [rows] = await pool.query(
@@ -135,13 +138,14 @@ app.put('/api/users/:id', async (req, res) => {
 
 // UPLOAD Profile Picture
 app.put('/api/users/:id/avatar', upload.single('avatar'), async (req, res) => {
-    if (!req.file) return res.status(400).json({ message: 'No file uploaded' });
+    if (!req.file) return res.status(400).json({ message: 'No file uploaded or file too large (Max 2MB)' });
     
     const avatarUrl = `/uploads/${req.file.filename}`;
     try {
         await pool.query('UPDATE Users SET avatar_url = ? WHERE user_id = ?', [avatarUrl, req.params.id]);
         res.status(200).json({ success: true, avatar_url: avatarUrl });
     } catch (error) {
+        console.error('Error uploading picture:', error);
         res.status(500).json({ success: false, message: 'Server error' });
     }
 });

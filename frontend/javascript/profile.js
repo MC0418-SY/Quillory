@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const postsFeed = document.getElementById('profilePostsFeed');
     const logoutBtn = document.querySelector('.logout-btn');
-    const profileImg = document.querySelector('.profile-img');
+    const profileImg = document.querySelector('.profile-img'); // Selects the main profile card image
     const fileInput = document.querySelector('.account-settings-fileinput');
     const saveChangesBtn = document.querySelector('.save-changes-btn');
 
@@ -20,16 +20,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const igInput = document.getElementById('instagram_url');
     const liInput = document.getElementById('linkedin_url');
 
-    // 1. Load User Data and Populate Form
+        // 1. Load User Data and Populate Form
     async function loadUserData() {
         try {
             const res = await fetch(`http://localhost:3000/api/users/${userId}`);
             const result = await res.json();
             if (result.success) {
                 const u = result.data;
+                
+                // If we got a URL back from the DB, display it
                 if (u.avatar_url) {
                     profileImg.src = `http://localhost:3000${u.avatar_url}?t=${new Date().getTime()}`;
+                } else {
+                    // Use inline SVG as fallback instead of via.placeholder.com
+                    profileImg.src = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'><rect width='120' height='120' fill='%23e0e0e0'/><circle cx='60' cy='50' r='25' fill='%23a0a0a0'/><path d='M15 120 a45 45 0 0 1 90 0' fill='%23a0a0a0'/></svg>";
                 }
+
                 usernameInput.value = u.username || '';
                 emailInput.value = u.email || '';
                 bioInput.value = u.bio_description || '';
@@ -75,11 +81,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 3. Handle Permanent Profile Picture Upload
+        // 3. Handle Profile Picture Upload
     if (fileInput) {
         fileInput.addEventListener('change', async (e) => {
             const file = e.target.files[0];
             if (file) {
+                if (file.size > 2 * 1024 * 1024) {
+                    return showCustomAlert('File is too large! Maximum size is 2MB.', 'error');
+                }
+
                 const formData = new FormData();
                 formData.append('avatar', file);
 
@@ -91,21 +101,23 @@ document.addEventListener('DOMContentLoaded', () => {
                     const result = await res.json();
                     
                     if (result.success) {
+                        // Immediately update the image on the screen
                         profileImg.src = `http://localhost:3000${result.avatar_url}?t=${new Date().getTime()}`;
                         showCustomAlert('Profile picture updated!');
+                    } else {
+                        showCustomAlert(result.message || 'Failed to upload picture.', 'error');
                     }
                 } catch (error) {
                     console.error('Error uploading picture:', error);
-                    showCustomAlert('Failed to upload picture.', 'error');
+                    showCustomAlert('Failed to connect to server.', 'error');
                 }
             }
         });
     }
 
-    // 4. Load User's Posts (Filtered by logged-in user!)
+    // 4. Load User's Posts
     async function loadProfilePosts() {
         try {
-            // Added ?userId=${userId} so it only fetches YOUR posts
             const response = await fetch(`http://localhost:3000/api/posts?userId=${userId}`);
             const result = await response.json();
 
@@ -156,10 +168,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // 5. Handle Log Out Click
     if (logoutBtn) {
         logoutBtn.addEventListener('click', () => {
-            // Clear local storage (this logs the user out)
             localStorage.removeItem('token');
             localStorage.removeItem('user_id');
-            
             showCustomAlert('Logging out...');
             setTimeout(() => {
                 window.location.href = 'login.html'; 
